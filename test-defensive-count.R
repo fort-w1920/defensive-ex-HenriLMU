@@ -1,5 +1,9 @@
 library(testthat)
 
+source("defensive_count_Henri.R")
+library(checkmate)
+library(testthat)
+
 context("checking count_them")
 
 test_that("does the right thing for sensible inputs", {
