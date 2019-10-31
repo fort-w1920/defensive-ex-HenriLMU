@@ -74,18 +74,16 @@ test_that("deals with factors, characters", {
                col_means(mtcars_fct[, "carb", drop = FALSE]))
 })
 
-#extra bonus:
-#if (FALSE) {
-# #deal with Date-variables as well
-#    mtcars_date <- mtcars
-#    mtcars_date$date <- as.Date(seq_len(nrow(mtcars)), origin = Sys.Date())
-#    expect_equal(col_means(mtcars_date),
-#                 cbind(col_means(mtcars), date = mean(mtcars_date$date)))
-#
-#  #deal with matrix-columns
-#    mtcars_matrix <- mtcars
-#    mtcars_matrix$matrix_column <- as.matrix(mtcars[, 3:4])
-#    # expect_what?
+test_that("deal with Date-variables as well", {
+    mtcars_date <- mtcars
+    mtcars_date$date <- as.Date(seq_len(nrow(mtcars)), origin = Sys.Date())
+    expect_equal(col_means(mtcars_date),
+                 cbind(col_means(mtcars), date = mean(mtcars_date$date)))
+
+  #deal with matrix-columns
+    mtcars_matrix <- mtcars
+    mtcars_matrix$matrix_column <- as.matrix(mtcars[, 3:4])
+    # expect_equal
 #
 #  #deal with list-columns
 #    mtcars_list <- mtcars
@@ -93,4 +91,4 @@ test_that("deals with factors, characters", {
 #    # expect_what?
 #}
 #
-#})
+})

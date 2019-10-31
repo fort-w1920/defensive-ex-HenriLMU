@@ -33,7 +33,8 @@ col_means <- function(df, na.rm = FALSE) {
       else return(df_dim1)
       
     } else {
-      numeric <- vapply(df, is.numeric, logical(1))
+      numeric <- vapply(df, check_dateornumeric, logical(1))
+      
       numeric_cols <- data.frame(df[, numeric])
       if (any(dim(numeric_cols)) == 0) return(data.frame())
       numeric_col_means <- data.frame(lapply(numeric_cols,
@@ -46,5 +47,5 @@ col_means <- function(df, na.rm = FALSE) {
   }
 }
 
-
-
+# Subfunction 1: check for dates or numerics
+check_dateornumeric <- function(x) inherits(x, 'Date') | is.numeric(x)
